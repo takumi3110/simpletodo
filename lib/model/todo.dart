@@ -2,7 +2,7 @@
 
 class Todo {
   String title;
-  List<String> item;
+  List<String> items;
   String? description;
   DateTime createdDate;
   DateTime updatedDate;
@@ -13,7 +13,7 @@ class Todo {
 
   Todo({
     required this.title,
-    required this.item,
+    required this.items,
     this.description,
     required this.createdDate,
     required this.updatedDate,
