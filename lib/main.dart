@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:simpletodo/view/list_page.dart';
+import 'package:simpletodo/view/screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
     // );
     return const CupertinoApp(
       title: 'simpleTodo',
-      home: ListPage(),
+      home: Screen(),
     );
   }
 }
