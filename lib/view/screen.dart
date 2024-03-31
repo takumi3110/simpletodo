@@ -12,6 +12,7 @@ class Screen extends StatefulWidget {
 }
 
 class _ScreenState extends State<Screen> with WidgetsBindingObserver {
+  int selectedIndex = 0;
   final _controller = CupertinoTabController();
   static List<Widget> pageList = [
     const CalendarPage(),
@@ -23,6 +24,7 @@ class _ScreenState extends State<Screen> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(
+        activeColor: Colors.green,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(CupertinoIcons.calendar), label: 'カレンダー'),
           BottomNavigationBarItem(icon: Icon(CupertinoIcons.list_bullet), label: 'リスト'),
@@ -37,6 +39,27 @@ class _ScreenState extends State<Screen> with WidgetsBindingObserver {
       },
       controller: _controller,
     );
+    // return Scaffold(
+    //   body: pageList[selectedIndex],
+    //   bottomNavigationBar: CupertinoTabBar(
+    //     items: [
+    //             BottomNavigationBarItem(icon: Icon(CupertinoIcons.calendar), label: 'カレンダー'),
+    //             BottomNavigationBarItem(icon: Icon(CupertinoIcons.list_bullet), label: 'リスト'),
+    //     ],
+    //     currentIndex: selectedIndex,
+    //     onTap: (index) {
+    //       setState(() {
+    //         selectedIndex = index;
+    //       });
+    //     },
+    //   ),
+    //   // floatingActionButton: FloatingActionButton(
+    //   //   onPressed: () {
+    //   //
+    //   //   },
+    //   //   child: const Icon(CupertinoIcons.add),
+    //   // ),
+    // );
   }
 }
 
