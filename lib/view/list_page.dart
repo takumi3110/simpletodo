@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:simpletodo/model/todo.dart';
+import 'package:simpletodo/model/item.dart';
 
 class ListPage extends StatefulWidget {
   const ListPage({super.key});
@@ -18,12 +18,9 @@ class _ListPageState extends State<ListPage> {
   TextEditingController titleController = TextEditingController(text: 'ttt');
   List<TextEditingController> itemControllers = [];
 
-  final todo = Todo(
-      title: 'title',
-      items: [
-        'item',
-        'item2'
-      ],
+  final item = Item(
+     category: '',
+      name: '',
       createdDate: DateTime.now(),
       updatedDate: DateTime.now()
   );
@@ -31,10 +28,6 @@ class _ListPageState extends State<ListPage> {
   @override
   void initState() {
     super.initState();
-    titleController.text = todo.title;
-    for (var item in todo.items) {
-      itemControllers.add(TextEditingController(text: item));
-    }
   }
 
   @override
@@ -90,7 +83,7 @@ class _ListPageState extends State<ListPage> {
                                 ),
                               ),
                               onDismissed: (direction) {
-                                todo.completedDate = DateTime.now();
+                                item.completedDate = DateTime.now();
                                 itemControllers.removeAt(index);
                               },
                               child: Container(
