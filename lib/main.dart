@@ -37,6 +37,9 @@ class MyApp extends StatelessWidget {
     return const CupertinoApp(
       title: 'simpleTodo',
       home: Screen(),
+      // theme: CupertinoThemeData(
+      //   primaryColor: CupertinoColors.activeOrange,
+      // ),
     );
   }
 }
