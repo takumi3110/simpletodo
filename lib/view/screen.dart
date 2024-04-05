@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:simpletodo/utils/widget_utils.dart';
 import 'package:simpletodo/view/calendar/calendar_page.dart';
-import 'package:simpletodo/view/list_page.dart';
+import 'package:simpletodo/view/list/list_page.dart';
 
 class Screen extends StatefulWidget {
   const Screen({super.key});
