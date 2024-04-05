@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:simpletodo/utils/widget_utils.dart';
 import 'package:simpletodo/view/calendar/calendar_page.dart';
-import 'package:simpletodo/view/list/list_page.dart';
+import 'package:simpletodo/view/category/category_page.dart';
 
 class Screen extends StatefulWidget {
   const Screen({super.key});
@@ -15,7 +14,8 @@ class _ScreenState extends State<Screen> with WidgetsBindingObserver {
   int selectedIndex = 0;
   final _controller = CupertinoTabController();
   static List<Widget> pageList = [
-    const ListPage(),
+    // const ListPage(),
+    const CategoryPage(),
     const CalendarPage(),
     const Center(child: Text('まとめて追加')),
     const Center(child: Text('ゴミ箱')),
