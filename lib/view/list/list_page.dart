@@ -2,16 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:simpletodo/model/category.dart';
 
 class ListPage extends StatefulWidget {
-  const ListPage({super.key});
+  final Category category;
+  const ListPage({super.key, required this.category});
 
   @override
   State<ListPage> createState() => _ListPageState();
 }
 
 class _ListPageState extends State<ListPage> {
-  TextEditingController categoryController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController shopController = TextEditingController();
   TextEditingController priorityController = TextEditingController();
@@ -19,9 +20,12 @@ class _ListPageState extends State<ListPage> {
 
   List<Map<String, dynamic>> createList = [];
 
+  Category? _category;
+
   @override
   void initState() {
     super.initState();
+    _category = widget.category;
     createList.addAll([
       {'keyboardType': TextInputType.text, 'controller': nameController, 'label': '商品名'},
       {'keyboardType': TextInputType.text, 'controller': shopController, 'label': '購入店舗'},
@@ -32,8 +36,8 @@ class _ListPageState extends State<ListPage> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-        navigationBar: const CupertinoNavigationBar(
-          middle: Text('リスト'),
+        navigationBar: CupertinoNavigationBar(
+          middle: Text(_category != null ? _category!.name: 'アイテムリスト'),
         ),
         child: SafeArea(
           child: Padding(
@@ -163,7 +167,7 @@ class _ListPageState extends State<ListPage> {
               Align(
                 alignment: Alignment.bottomRight,
                 child: FloatingActionButton(
-                  // backgroundColor: Colors.green,
+                  backgroundColor: CupertinoColors.systemCyan,
                   onPressed: () {
                     showCupertinoModalPopup(
                         // barrierDismissible: true,

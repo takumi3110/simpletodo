@@ -10,6 +10,6 @@ class CalendarPage extends StatefulWidget {
 class _CalendarPageState extends State<CalendarPage> {
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(child: Center(child: const Text('calendar page')));
+    return const CupertinoPageScaffold(child: Center(child: Text('calendar page')));
   }
 }
