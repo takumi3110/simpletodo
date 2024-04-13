@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:simpletodo/model/category.dart';
+import 'package:simpletodo/utils/widget_utils.dart';
 
 class ListPage extends StatefulWidget {
   final Category category;
@@ -13,12 +15,18 @@ class ListPage extends StatefulWidget {
 }
 
 class _ListPageState extends State<ListPage> {
+  // create
   TextEditingController nameController = TextEditingController();
   TextEditingController shopController = TextEditingController();
   TextEditingController priorityController = TextEditingController();
   TextEditingController memoController = TextEditingController();
-
   List<Map<String, dynamic>> createList = [];
+
+  // search
+  TextEditingController searchNameController = TextEditingController();
+  TextEditingController searchShopController = TextEditingController();
+  TextEditingController searchPriorityController = TextEditingController();
+  List<Map<String, dynamic>> searchList = [];
 
   Category? _category;
 
@@ -30,6 +38,23 @@ class _ListPageState extends State<ListPage> {
       {'keyboardType': TextInputType.text, 'controller': nameController, 'label': '商品名'},
       {'keyboardType': TextInputType.text, 'controller': shopController, 'label': '購入店舗'},
       {'keyboardType': TextInputType.text, 'controller': memoController, 'label': 'メモ'},
+    ]);
+    searchList.addAll([
+      {
+        'keyboardType': TextInputType.text,
+        'controller': searchNameController,
+        'label': '商品名'
+      },
+      {
+        'keyboardType': TextInputType.text,
+        'controller': searchShopController,
+        'label': '購入店舗'
+      },
+      {
+        'keyboardType': TextInputType.text,
+        'controller': searchPriorityController,
+        'label': '優先度'
+      }
     ]);
   }
 
@@ -53,7 +78,7 @@ class _ListPageState extends State<ListPage> {
                             style: const TextStyle(fontSize: 14, color: CupertinoColors.link),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-                                debugPrint('search');
+                                WidgetUtils.showModal(context, searchList);
                               }),
                       )),
                   SizedBox(
@@ -169,54 +194,7 @@ class _ListPageState extends State<ListPage> {
                 child: FloatingActionButton(
                   backgroundColor: CupertinoColors.systemCyan,
                   onPressed: () {
-                    showCupertinoModalPopup(
-                        // barrierDismissible: true,
-                        context: context,
-                        builder: (BuildContext context) => CupertinoPopupSurface(
-                              child: Container(
-                                height: MediaQuery.sizeOf(context).height * 0.55,
-                                width: double.infinity,
-                                padding: const EdgeInsets.all(20),
-                                color: CupertinoColors.systemBackground,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  // mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    ListView.builder(
-                                      shrinkWrap: true,
-                                      physics: const NeverScrollableScrollPhysics(),
-                                      itemCount: createList.length,
-                                      itemBuilder: (context, index) {
-                                        return Column(
-                                          children: [
-                                            CupertinoTextFormFieldRow(
-                                              keyboardType: createList[index]['keyboardType'],
-                                              controller: createList[index]['controller'],
-                                              prefix: Padding(
-                                                padding: const EdgeInsets.only(right: 10.0),
-                                                child: SizedBox(width: 80, child: Text(createList[index]['label'], style: const TextStyle(fontSize: 14, ),)),
-                                              ),
-                                              decoration: const BoxDecoration(
-                                                  border: Border(
-                                                      bottom: BorderSide(
-                                                          width: 1, color: CupertinoColors.opaqueSeparator))),
-                                            ),
-                                            const SizedBox(
-                                              height: 20,
-                                            )
-                                          ],
-                                        );
-                                      },
-                                    ),
-                                    CupertinoButton(
-                                        child: const Text('SAVE', style: TextStyle(fontSize: 20, ),),
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        })
-                                  ],
-                                ),
-                              ),
-                            ));
+                    WidgetUtils.showModal(context, createList);
                   },
                   child: const Icon(
                     CupertinoIcons.add,

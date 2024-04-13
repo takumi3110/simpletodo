@@ -27,7 +27,7 @@ class _ScreenState extends State<Screen> with WidgetsBindingObserver {
     return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(
         height: 70,
-        activeColor: Colors.green,
+        activeColor: Colors.blueAccent,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(CupertinoIcons.list_bullet), label: 'リスト'),
           BottomNavigationBarItem(icon: Icon(CupertinoIcons.calendar), label: 'カレンダー'),
