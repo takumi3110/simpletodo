@@ -61,9 +61,7 @@ class _ListPageState extends State<ListPage> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-        navigationBar: CupertinoNavigationBar(
-          middle: Text(_category != null ? _category!.name: 'アイテムリスト'),
-        ),
+      navigationBar: WidgetUtils.createNavigationBar(_category != null ? _category!.name: 'アイテムリスト'),
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -88,14 +86,7 @@ class _ListPageState extends State<ListPage> {
                       itemBuilder: (builder, index) {
                         return Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
-                            decoration: BoxDecoration(
-                              border: Border.all(color: CupertinoColors.lightBackgroundGray),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: const Text('item'),
-                          ),
+                          child: WidgetUtils.itemCard(const Text('item'))
                         );
                       },
                     ),

@@ -37,9 +37,7 @@ class _CategoryPageState extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-        navigationBar: const CupertinoNavigationBar(
-          middle: Text('カテゴリー'),
-        ),
+        navigationBar: WidgetUtils.createNavigationBar('カテゴリー'),
         child: SafeArea(
             child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -107,22 +105,15 @@ class _CategoryPageState extends State<CategoryPage> {
                                             category: categoryList[index],
                                           )));
                             },
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
-                              decoration: BoxDecoration(
-                                border: Border.all(color: CupertinoColors.lightBackgroundGray),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Row(
-                                children: [
-                                  Text('${index + 1}'),
-                                  const SizedBox(
-                                    width: 20,
-                                  ),
-                                  Text(categoryList[index].name),
-                                ],
-                              ),
-                            ),
+                            child: WidgetUtils.itemCard(Row(
+                              children: [
+                                Text('${index + 1}'),
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                                Text(categoryList[index].name),
+                              ],
+                            ),)
                           ),
                         );
                       },

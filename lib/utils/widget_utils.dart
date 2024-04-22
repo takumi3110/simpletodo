@@ -53,4 +53,21 @@ class WidgetUtils {
           ),
         ));
   }
+
+  static CupertinoNavigationBar createNavigationBar(String title) {
+    return CupertinoNavigationBar(
+      middle: Text(title),
+    );
+  }
+
+  static Container itemCard(Widget child) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+      decoration: BoxDecoration(
+        border: Border.all(color: CupertinoColors.lightBackgroundGray),
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: child
+    );
+  }
 }
